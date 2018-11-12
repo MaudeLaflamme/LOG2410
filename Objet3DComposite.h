@@ -9,6 +9,7 @@
 #define EA_B3F4EF6C_5851_4239_9FC3_5E8BB6446332__INCLUDED_
 
 #include "Objet3DAbs.h"
+#include "PrimitiveAbs.h"
 
 class Objet3DComposite : public Objet3DAbs
 {

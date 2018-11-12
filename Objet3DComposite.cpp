@@ -15,7 +15,7 @@ Objet3DComposite::Objet3DComposite(){
 Objet3DComposite::Objet3DComposite(const Objet3DComposite & mdd)
 {
 	// A Completer...
-	this.m_objetContainer = mdd.m_objetContainer;
+	this->m_objetContainer = mdd.m_objetContainer;
 }
 
 Objet3DComposite::~Objet3DComposite(){
@@ -29,8 +29,10 @@ Objet3DComposite * Objet3DComposite::clone() const
 void Objet3DComposite::addChild(const Objet3DAbs& obj3d)
 {
 	// A Completer...
-	Objet3DAbs* ptr = &obj3d;
-	this.m_objetContainer.push_back(ptr);
+	Objet3DAbs* ptr = new Objet3DComposite(obj3d);
+	this->m_objetContainer.push_back(ptr);
+
+	//A REGLER
 }
 
 Objet3DIterator Objet3DComposite::begin(){
@@ -77,19 +79,29 @@ PrimitiveParams Objet3DComposite::getParameters() const {
 void Objet3DComposite::removeChild(Objet3DIterator_const obj3dIt)
 {
 	// A Completer...
-	for(auto it = this.m_objetContainer.begin(); it != this.m_objetContainer.end(); it++){
-		if(it == obj3dIt){
-			this.m_objetContainer.erase(it);
-		} 
+	for (auto it = this->m_objetContainer.begin(); it != this->m_objetContainer.end(); it++) {
+		if (it == obj3dIt) {
+			this->m_objetContainer.erase(it);
+		}
+		//NOT FINISHED
+	}
 }
 
 void Objet3DComposite::moveCenter(const Point3D & delta)
 {
 	// A Completer...
+	for (auto it = this->m_objetContainer.begin(); it != this->m_objetContainer.end(); it++) {
+		(*it)->moveCenter(delta);
+	}
+
 }
 
-void Objet3DComposite::setCenter(const Point3D& center){
+void Objet3DComposite::setCenter(const Point3D& center) {
 	// A Completer...
+	Point3D diff = (this->computeCenter()) - center;
+	for (auto it = this->m_objetContainer.begin(); it != this->m_objetContainer.end(); it++) {
+		(*it)->moveCenter(center);
+	}
 }
 
 void Objet3DComposite::setParameter(size_t pIndex, float pValue){
@@ -103,20 +115,17 @@ Point3D Objet3DComposite::computeCenter() const
 
 	// A Completer...
 	Point3D m_center;
-	if(this.m_objetContainer.size == 0){
+	if(this->m_objetContainer.size == 0){
 		m_center.x = 0;
 		m_center.y = 0;
 		m_center.z = 0;
 	}
 	else{
-		for(auto it = this.m_objetContainer.begin(); it != this.m_objetContainer.end(); it++){
-			m_center.x += it->getCenter.x;
-			m_center.y += it->getCenter.y;
-			m_center.z += it->getCenter.z;
+		for(auto it = this->m_objetContainer.begin(); it != this->m_objetContainer.end(); it++){
+			m_center += (*it)->getCenter;
 		}
-		m_center.x /= m_objetContainer.size;
-		m_center.y /= m_objetContainer.size;
-		m_center.z /= m_objetContainer.size;
+
+		m_center /= m_objetContainer.size;
 
 	}
 	
