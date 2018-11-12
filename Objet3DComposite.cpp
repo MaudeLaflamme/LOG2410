@@ -77,6 +77,10 @@ PrimitiveParams Objet3DComposite::getParameters() const {
 void Objet3DComposite::removeChild(Objet3DIterator_const obj3dIt)
 {
 	// A Completer...
+	for(auto it = this.m_objetContainer.begin(); it != this.m_objetContainer.end(); it++){
+		if(it == obj3dIt){
+			this.m_objetContainer.erase(it);
+		} 
 }
 
 void Objet3DComposite::moveCenter(const Point3D & delta)
@@ -99,6 +103,23 @@ Point3D Objet3DComposite::computeCenter() const
 
 	// A Completer...
 	Point3D m_center;
+	if(this.m_objetContainer.size == 0){
+		m_center.x = 0;
+		m_center.y = 0;
+		m_center.z = 0;
+	}
+	else{
+		for(auto it = this.m_objetContainer.begin(); it != this.m_objetContainer.end(); it++){
+			m_center.x += it->getCenter.x;
+			m_center.y += it->getCenter.y;
+			m_center.z += it->getCenter.z;
+		}
+		m_center.x /= m_objetContainer.size;
+		m_center.y /= m_objetContainer.size;
+		m_center.z /= m_objetContainer.size;
+
+	}
+	
 	return m_center;
 }
 
