@@ -103,7 +103,7 @@ TP4_Test::RESULTAT TP4_Test::testComposite()
 
 	return SUCCES;
 }
-
+/*
 TP4_Test::RESULTAT TP4_Test::testDecorator()
 {
 	Point3D resultatTransform1(3., 2., 0.5f);
@@ -165,4 +165,5 @@ TP4_Test::RESULTAT TP4_Test::testDecorator()
 	std::cout << m_cylTransformed << std::endl;
 
 	return SUCCES;
+	*/
 }

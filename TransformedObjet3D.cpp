@@ -72,14 +72,17 @@ Point3D TransformedObjet3D::getCenter() const
 size_t TransformedObjet3D::getNbParameters() const 
 {
 	// A Completer...
-	return m_objet3d.getNbParameters;
+	return (m_objet3d->getNbParameters + 2);
 }
 
 
 PrimitiveParams TransformedObjet3D::getParameters() const 
 {
 	// A Completer...
-	return m_objet3d->getParameters;
+	PrimitiveParams params = m_objet3d->getParameters;
+	params.push_back(m_scale);
+	params.push_back(m_translation);
+	return params;
 }
 
 
