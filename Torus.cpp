@@ -40,9 +40,9 @@ PrimitiveParams Torus::getParameters() const
 {
 	// A Completer...
 	PrimitiveParams params;
-	params.push_back(m_center.x);
-	params.push_back(m_center.y);
-	params.push_back(m_center.z);
+	params.push_back(m_center.x());
+	params.push_back(m_center.y());
+	params.push_back(m_center.z());
 	params.push_back(this->m_radius[0]);
 	params.push_back(this->m_radius[1]);
 	return params;

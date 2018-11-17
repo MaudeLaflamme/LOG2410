@@ -38,9 +38,9 @@ PrimitiveParams Sphere::getParameters() const {
 
 	// A Completer...
 	PrimitiveParams params;
-	params.push_back(this->m_center.x);
-	params.push_back(this->m_center.y);
-	params.push_back(this->m_center.z);
+	params.push_back(this->m_center.x());
+	params.push_back(this->m_center.y());
+	params.push_back(this->m_center.z());
 	params.push_back(this->m_radius);
 	return params;
 }

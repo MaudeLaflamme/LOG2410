@@ -29,8 +29,8 @@ Objet3DComposite * Objet3DComposite::clone() const
 void Objet3DComposite::addChild(const Objet3DAbs& obj3d)
 {
 	// A Completer...
-	Objet3DAbs* ptr = new Objet3DComposite(obj3d);
-	this->m_objetContainer.push_back(ptr);
+	//Objet3DAbs* ptr = new Objet3DComposite(obj3d);
+	this->m_objetContainer.emplace_back(obj3d);// selon dalyna...
 
 	//A REGLER
 }
@@ -77,7 +77,7 @@ size_t Objet3DComposite::getNbParameters() const
 {
 	int nbParams = 0;
 	for (auto it = m_objetContainer.begin(); it != m_objetContainer.end(); it++) {
-		nbParams += (*it)->getNbParameters;
+		nbParams += (*it)->getNbParameters();
 	}
 	return nbParams;
 }
@@ -86,7 +86,9 @@ PrimitiveParams Objet3DComposite::getParameters() const {
 
 	PrimitiveParams params;
 	for (auto it = m_objetContainer.begin(); it != m_objetContainer.end(); it++) {
-		params.push_back((*it)->getParameters);
+		it->get()->getNbParameters();
+		//params.push_back((*it)->getParameters());
+		params.push_back(it->get()->getNbParameters()); //pas sûr....
 	}
 	return  params;
 }
@@ -130,17 +132,18 @@ Point3D Objet3DComposite::computeCenter() const
 
 	// A Completer...
 	Point3D m_center;
-	if(this->m_objetContainer.size == 0){
-		m_center.x = 0;
-		m_center.y = 0;
-		m_center.z = 0;
+	if(this->m_objetContainer.size() == 0){
+		
+		m_center.x() = 0;
+		m_center.y() = 0;
+		m_center.z() = 0;
 	}
 	else{
 		for(auto it = this->m_objetContainer.begin(); it != this->m_objetContainer.end(); it++){
-			m_center += (*it)->getCenter;
+			m_center += (*it)->getCenter();
 		}
 
-		m_center /= m_objetContainer.size;
+		m_center /= m_objetContainer.size();
 
 	}
 	

@@ -68,18 +68,18 @@ Point3D PrimitiveAbs::getCenter() const {
 
 void PrimitiveAbs::moveCenter(const Point3D & delta)
 {
-	this->m_center.x += delta.x;
-	this->m_center.y += delta.y;
-	this->m_center.z += delta.z;
+	this->m_center.x() += delta.x();
+	this->m_center.y() += delta.y();
+	this->m_center.z() += delta.z();
 
 	// A Completer...
 }
 
 void PrimitiveAbs::setCenter(const Point3D& center)
 {
-	this->m_center.x = center.x;
-	this->m_center.y = center.y;
-	this->m_center.z = center.z;
+	this->m_center.x() = center.x();
+	this->m_center.y() = center.y();
+	this->m_center.z() = center.z();
 	// A Completer...
 }
 
