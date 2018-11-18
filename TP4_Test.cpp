@@ -166,4 +166,4 @@ TP4_Test::RESULTAT TP4_Test::testDecorator()
 
 	return SUCCES;
 	*/
-}
+//}

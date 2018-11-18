@@ -40,10 +40,12 @@ size_t Cube::getNbParameters() const {
 PrimitiveParams Cube::getParameters() const 
 {
 	// A Completer...
-	PrimitiveParams params;
-	params.push_back(m_center.x);
-	params.push_back(m_center.y);
-	params.push_back(m_center.z);
+
+	PrimitiveParams params; 
+
+	params.push_back(this->m_center.x());
+	params.push_back(this->m_center.y());
+	params.push_back(this->m_center.z());
 	params.push_back(this->m_dimensions[0]);
 	params.push_back(this->m_dimensions[1]);
 	params.push_back(this->m_dimensions[2]);

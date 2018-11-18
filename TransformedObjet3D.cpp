@@ -51,7 +51,8 @@ Objet3DIterator_const TransformedObjet3D::cend() const {
 Objet3DAbs* TransformedObjet3D::clone() const 
 {
 	// A Completer...
-	return nullptr;
+	Objet3DAbs* ptrClone = new TransformedObjet3D(*this);
+	return ptrClone;
 }
 
 
@@ -65,23 +66,25 @@ Objet3DIterator TransformedObjet3D::end()
 Point3D TransformedObjet3D::getCenter() const 
 {
 	// A Completer...
-	return m_objet3d->getCenter;
+	return (m_objet3d->getCenter() + this->m_translation);
 }
 
 
 size_t TransformedObjet3D::getNbParameters() const 
 {
 	// A Completer...
-	return (m_objet3d->getNbParameters + 2);
+	return (m_objet3d->getNbParameters() + 2);
 }
 
 
 PrimitiveParams TransformedObjet3D::getParameters() const 
 {
 	// A Completer...
-	PrimitiveParams params = m_objet3d->getParameters;
+	PrimitiveParams params = m_objet3d->getParameters();
 	params.push_back(m_scale);
-	params.push_back(m_translation);
+	params.push_back(m_translation.x()); 
+	params.push_back(m_translation.y());
+	params.push_back(m_translation.z());
 	return params;
 }
 
@@ -96,7 +99,7 @@ void TransformedObjet3D::removeChild(Objet3DIterator_const obj3dIt)
 {
 	// Deleguer a l'objet decore la tache d'eliminer un enfant
 	// A Completer...
-		m_objet3d->removeChild(obj3dit);
+		m_objet3d->removeChild(obj3dIt);
 }
 
 
@@ -115,25 +118,25 @@ void TransformedObjet3D::setParameter(size_t pIndex, float pValue)
 float TransformedObjet3D::getScale() const
 {
 	// A Completer...
-	return this.m_scale;
+	return this->m_scale;
 }
 
 void TransformedObjet3D::setScale(float scal)
 {
 	// A Completer...
-	this.m_scale = scal;
+	this->m_scale = scal;
 }
 
 Point3D TransformedObjet3D::getTranslation() const
 {
 	// A Completer...
-	return this.m_translation;
+	return this->m_translation;
 }
 
 void TransformedObjet3D::setTranslation(const Point3D & translat)
 {
 	// A Completer...
-	this.m_translation = translat;
+	this->m_translation = translat;
 }
 
 
