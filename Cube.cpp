@@ -34,7 +34,7 @@ Cube * Cube::clone() const
 size_t Cube::getNbParameters() const {
 
 	// A Completer...
-	return 4;
+	return 3;
 }
 
 PrimitiveParams Cube::getParameters() const 
@@ -43,9 +43,6 @@ PrimitiveParams Cube::getParameters() const
 
 	PrimitiveParams params; 
 
-	params.push_back(this->m_center.x());
-	params.push_back(this->m_center.y());
-	params.push_back(this->m_center.z());
 	params.push_back(this->m_dimensions[0]);
 	params.push_back(this->m_dimensions[1]);
 	params.push_back(this->m_dimensions[2]);

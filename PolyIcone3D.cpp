@@ -6,9 +6,9 @@
 
 int main(int argc, char** argv)
 {
-	std::cout << "allo";
-	//TP4_Test lesTests;
-	/*
+
+	TP4_Test lesTests;
+	
 	if (lesTests.testComposite() == TP4_Test::SUCCES)
 	{
 		std::cout << "Patron Composite teste avec SUCCES" << std::endl << std::endl;
@@ -16,5 +16,5 @@ int main(int argc, char** argv)
 		{
 			std::cout << "Patron Decorator teste avec SUCCES" << std::endl;
 		}
-	}*/
+	}
 }
