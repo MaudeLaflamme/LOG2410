@@ -10,7 +10,7 @@
 #include "Cylinder.h"
 #include "Sphere.h"
 
-
+/*
 TP4_Test::TP4_Test()
 	: m_icone3D(), m_cylTransformed(Cylinder(Point3D(2.5f,1.5f,0.),2,5),Point3D(0.5f,0.5f,0.5f),3)
 {
@@ -35,13 +35,13 @@ TP4_Test::TP4_Test()
 	m_icone3D.addChild(cub2);
 	m_icone3D.addChild(compos2);
 	m_icone3D.addChild(sph2);
-	m_icone3D.addChild(compos1);
-}
+	m_icone3D.addChild(compos1);*/
+//}
 
 TP4_Test::~TP4_Test()
 {
 }
-
+/*
 TP4_Test::RESULTAT TP4_Test::testComposite()
 {
 	Objet3DIterator_const itIcone = m_icone3D.cbegin();
@@ -102,7 +102,7 @@ TP4_Test::RESULTAT TP4_Test::testComposite()
 	std::cout << m_icone3D << std::endl;
 
 	return SUCCES;
-}
+}*/
 /*
 TP4_Test::RESULTAT TP4_Test::testDecorator()
 {

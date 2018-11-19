@@ -52,8 +52,7 @@ void Sphere::setParameter(size_t pIndex, float pValue){
 	if (pValue < 0.0)
 		throw std::range_error("Invalid radius value for sphere. Must be larger than 0");
 
-	else
-		this->m_radius = pValue;
+	this->m_radius = pValue;
 	// A Completer...
 }
 
