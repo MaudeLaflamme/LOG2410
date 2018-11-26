@@ -31,16 +31,13 @@ Sphere * Sphere::clone() const
 size_t Sphere::getNbParameters() const {
 
 	// A Completer...
-	return 2;
+	return 1;
 }
 
 PrimitiveParams Sphere::getParameters() const {
 
 	// A Completer...
 	PrimitiveParams params;
-	params.push_back(this->m_center.x());
-	params.push_back(this->m_center.y());
-	params.push_back(this->m_center.z());
 	params.push_back(this->m_radius);
 	return params;
 }
@@ -52,8 +49,7 @@ void Sphere::setParameter(size_t pIndex, float pValue){
 	if (pValue < 0.0)
 		throw std::range_error("Invalid radius value for sphere. Must be larger than 0");
 
-	else
-		this->m_radius = pValue;
+	this->m_radius = pValue;
 	// A Completer...
 }
 

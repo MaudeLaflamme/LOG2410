@@ -7,7 +7,7 @@
 
 #include "Objet3DComposite.h"
 
-
+using namespace std;
 Objet3DComposite::Objet3DComposite() {
 
 }
@@ -15,7 +15,10 @@ Objet3DComposite::Objet3DComposite() {
 Objet3DComposite::Objet3DComposite(const Objet3DComposite & mdd)
 {
 	// A Completer...
-	this->m_objetContainer = mdd.m_objetContainer;
+	for (auto it = mdd.cbegin(); it != mdd.cend(); it++) {
+		addChild(*it);
+	}
+	
 }
 
 Objet3DComposite::~Objet3DComposite() {
@@ -23,17 +26,18 @@ Objet3DComposite::~Objet3DComposite() {
 
 Objet3DComposite * Objet3DComposite::clone() const
 {
-	return nullptr;
+	Objet3DComposite * ptr(new Objet3DComposite(*this));
+	return ptr;
 }
 
 void Objet3DComposite::addChild(const Objet3DAbs& obj3d)
 {
 	// A Completer...
 
-	Objet3DPtr newPtr(obj3d.clone());
-	this->m_objetContainer.push_back(newPtr);
+	Objet3DPtr ptr;
+	ptr = static_cast<Objet3DPtr>(obj3d.clone());
+	this->m_objetContainer.push_back(std::move(ptr));
 
-	//A REGLER
 }
 
 Objet3DIterator Objet3DComposite::begin() {
@@ -76,40 +80,28 @@ Point3D Objet3DComposite::getCenter() const {
 
 size_t Objet3DComposite::getNbParameters() const
 {
-	int nbParams = 0;
-	for (auto it = m_objetContainer.begin(); it != m_objetContainer.end(); it++) {
-		nbParams += (*it)->getNbParameters();
-	}
-	return nbParams;
+	return 0;
+	
 }
 
 PrimitiveParams Objet3DComposite::getParameters() const {
 
-	PrimitiveParams params;
-	for (auto it = m_objetContainer.begin(); it != m_objetContainer.end(); it++) {
-		it->get()->getNbParameters();
-		//params.push_back((*it)->getParameters());
-		params.push_back(it->get()->getNbParameters()); //pas sûr....
-	}
-	return  params;
+	
+	return PrimitiveParams();
 }
 
 void Objet3DComposite::removeChild(Objet3DIterator_const obj3dIt)
 {
 	// A Completer...
-	for (auto it = this->m_objetContainer.begin(); it != this->m_objetContainer.end(); it++) {
-		if (it == obj3dIt) {
-			this->m_objetContainer.erase(it);
-		}
-		//NOT FINISHED
-	}
+	this->m_objetContainer.erase(obj3dIt);
+	
 }
 
 void Objet3DComposite::moveCenter(const Point3D & delta)
 {
 	// A Completer...
-	for (auto it = this->m_objetContainer.begin(); it != this->m_objetContainer.end(); it++) {
-		(*it)->moveCenter(delta);
+	for (auto it = begin(); it !=end(); it++) {
+		it->moveCenter(delta);
 	}
 
 }
@@ -117,8 +109,8 @@ void Objet3DComposite::moveCenter(const Point3D & delta)
 void Objet3DComposite::setCenter(const Point3D& center) {
 	// A Completer...
 	Point3D diff = (this->computeCenter()) - center;
-	for (auto it = this->m_objetContainer.begin(); it != this->m_objetContainer.end(); it++) {
-		(*it)->moveCenter(center);
+	for (auto it = begin(); it != end(); it++) {
+		it->moveCenter(diff);
 	}
 }
 
@@ -140,11 +132,11 @@ Point3D Objet3DComposite::computeCenter() const
 		m_center.z() = 0;
 	}
 	else {
-		for (auto it = this->m_objetContainer.begin(); it != this->m_objetContainer.end(); it++) {
-			m_center += (*it)->getCenter();
+		for (auto it = cbegin(); it != cend(); it++) {
+			m_center += it->getCenter();
 		}
 
-		m_center /= m_objetContainer.size();
+		m_center /= float(m_objetContainer.size());
 
 	}
 
@@ -156,7 +148,7 @@ size_t Objet3DComposite::outputIndent = 0;
 
 std::ostream& indentation(std::ostream& o, size_t indentLevel)
 {
-	for (auto iindent = 0; iindent < indentLevel; ++iindent)
+	for (unsigned iindent = 0; iindent < indentLevel; ++iindent)
 		o << "\t";
 	return o;
 }

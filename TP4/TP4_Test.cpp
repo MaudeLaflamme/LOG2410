@@ -9,15 +9,16 @@
 #include "Cube.h"
 #include "Cylinder.h"
 #include "Sphere.h"
+#include "Torus.h"
 
 
 TP4_Test::TP4_Test()
-	: m_icone3D(), m_cylTransformed(Cylinder(Point3D(2.5f,1.5f,0.),2,5),Point3D(0.5f,0.5f,0.5f),3)
+	: m_icone3D(), m_cylTransformed(Torus(Point3D(2.5f,1.5f,0.),2,5),Point3D(0.5f,0.5f,0.5f),3) //Modification pour test Torus
 {
 	Cube     cub1(Point3D(1., 2., 3.), 2., 2., 2.);
 	Cube     cub2(Point3D(-1., 2., 4.), 2.5f, 2.1f, 4.);
-	Cylinder cyl1(Point3D(3., -1., 1.), 1., 2.);
-	Cylinder cyl2(Point3D(2., 1., 2.), 1., 2.);
+	Torus cyl1(Point3D(3., -1., 1.), 1., 2.);			//Modification pour test Torus
+	Torus cyl2(Point3D(2., 1., 2.), 1., 2.);			//Modification pour test Torus
 	Sphere   sph1(Point3D(2., 2., 2.), 2.);
 	Sphere   sph2(Point3D(3., -1., 1.), 3.5);
 
@@ -103,7 +104,7 @@ TP4_Test::RESULTAT TP4_Test::testComposite()
 
 	return SUCCES;
 }
-/*
+
 TP4_Test::RESULTAT TP4_Test::testDecorator()
 {
 	Point3D resultatTransform1(3., 2., 0.5f);
@@ -165,5 +166,5 @@ TP4_Test::RESULTAT TP4_Test::testDecorator()
 	std::cout << m_cylTransformed << std::endl;
 
 	return SUCCES;
-	*/
-//}
+	
+}

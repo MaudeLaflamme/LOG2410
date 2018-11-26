@@ -51,8 +51,9 @@ Objet3DIterator_const TransformedObjet3D::cend() const {
 Objet3DAbs* TransformedObjet3D::clone() const 
 {
 	// A Completer...
-	Objet3DAbs* ptrClone = new TransformedObjet3D(*this);
-	return ptrClone;
+	
+	TransformedObjet3D * ptr(new TransformedObjet3D(*this));
+	return ptr;
 }
 
 
@@ -73,7 +74,7 @@ Point3D TransformedObjet3D::getCenter() const
 size_t TransformedObjet3D::getNbParameters() const 
 {
 	// A Completer...
-	return (m_objet3d->getNbParameters() + 2);
+	return m_objet3d->getNbParameters();
 }
 
 
@@ -81,10 +82,10 @@ PrimitiveParams TransformedObjet3D::getParameters() const
 {
 	// A Completer...
 	PrimitiveParams params = m_objet3d->getParameters();
-	params.push_back(m_scale);
-	params.push_back(m_translation.x()); 
-	params.push_back(m_translation.y());
-	params.push_back(m_translation.z());
+	for (int i = 0; i < params.size(); i++) {
+		params[i] *= this->m_scale;
+	}
+
 	return params;
 }
 

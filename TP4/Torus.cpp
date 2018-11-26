@@ -33,16 +33,13 @@ Torus * Torus::clone() const
 size_t Torus::getNbParameters() const {
 
 	// A Completer...
-	return 3;
+	return 2;
 }
 
 PrimitiveParams Torus::getParameters() const
 {
 	// A Completer...
 	PrimitiveParams params;
-	params.push_back(m_center.x());
-	params.push_back(m_center.y());
-	params.push_back(m_center.z());
 	params.push_back(this->m_radius[0]);
 	params.push_back(this->m_radius[1]);
 	return params;
@@ -54,9 +51,9 @@ void Torus::setParameter(size_t pIndex, float pValue) {
 
 	if (pValue<0.0)
 		throw std::range_error("Invalid dimension value for cube. Must be larger than 0");
-	else {
-		this->m_radius[pIndex] = pValue;
-	}
+
+	this->m_radius[pIndex] = pValue;
+	
 	// A Completer...
 }
 
