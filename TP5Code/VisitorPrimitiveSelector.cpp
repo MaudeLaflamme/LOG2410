@@ -29,11 +29,20 @@ void VisitorPrimitiveSelector::visitCube(class Cube& cub)
 	// Verifier que la pile d'objets courants n'est pas vide
 	// Verifier que le type de la primitive est bien celui recherchee
 	// Si oui, ajouter la primitive dans les objets selectionnes
+
+	if (!m_currentObjStack.empty())
+		if (typeid(*(*(m_currentObjStack.begin()))) == typeid(m_type)){		//Il faudrait que l'élément de gauche soit le type du visiteur.
+			m_selectObjContainer.push_back(*(m_currentObjStack.begin()));
+		}
 }
 
 void VisitorPrimitiveSelector::visitCylinder(class Cylinder& cyl)
 {
 	// A COMPLETER:
+	if (!m_currentObjStack.empty())
+		if (typeid(*(*(m_currentObjStack.begin()))) == typeid(Cylinder)) {
+			m_selectObjContainer.push_back(*(m_currentObjStack.begin()));
+		}
 	// Verifier que la pile d'objets courants n'est pas vide
 	// Verifier que le type de la primitive est bien celui recherchee
 	// Si oui, ajouter la primitive dans les objets selectionnes
@@ -48,6 +57,11 @@ void VisitorPrimitiveSelector::visitObjComposite(class Object3DComposite& comp)
 {
 	// A COMPLETER:
 	// Iterer sur les enfants du composite
+	for (auto it = comp.begin(); it != comp.end(); it++) {
+		m_currentObjStack.push_back(it);
+		if ()
+			this->visitCube(*(it));
+	}
 	//		- Stocker l'enfant sur la pile des objets courants
 	//		- Traiter l'enfant
 	//		- Retirer l'enfant de sur la pile
@@ -69,6 +83,11 @@ void VisitorPrimitiveSelector::visitSphere(class Sphere& sph)
 	// Verifier que la pile d'objets courants n'est pas vide
 	// Verifier que le type de la primitive est bien celui recherchee
 	// Si oui, ajouter la primitive dans les objets selectionnes
+	if (!m_currentObjStack.empty())
+		if (typeid(*(*(m_currentObjStack.begin()))) == typeid(Sphere)) {
+			m_selectObjContainer.push_back(*(m_currentObjStack.begin()));
+		}
+	
 }
 
 void VisitorPrimitiveSelector::visitTransformedObj(class TransformedObject3D& tobj)
