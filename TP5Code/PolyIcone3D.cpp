@@ -4,7 +4,7 @@
 
 #include "TP5_Test.h"
 
-//#define INTERACTIF
+#define INTERACTIF
 
 int main(int argc, char** argv)
 {
@@ -26,4 +26,6 @@ int main(int argc, char** argv)
 	{
 		std::cout << "Tous les tests se sont executes avec SUCCES" << std::endl << std::endl;
 	}
+	system("PAUSE");
+
 }
